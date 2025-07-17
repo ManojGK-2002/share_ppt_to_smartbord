@@ -1,6 +1,6 @@
 # 📄 Document Upload Web App (Flask-based)
 
-![Web App Screenshot](https://github.com/ManojGK-2002/share_ppt_to_smartbord/blob/main/WhatsApp%20Image%202025-07-16%20at%2017.35.46_b2ec9d40.jpg?raw=true)
+![Web App Screenshot](https://github.com/ManojGK-2002/share_ppt_to_smartbord/blob/main/Screenshot%202025-07-17%20123846.png)
 
 This project is a simple and secure web application built with **Flask (Python)** that allows users to upload various types of documents such as `.pdf`, `.doc`, `.docx`, `.xls`, `.xlsx`, and `.csv`.
 
