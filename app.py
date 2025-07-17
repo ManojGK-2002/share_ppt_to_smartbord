@@ -444,19 +444,57 @@ def upload_file():
     return render_template_string(HTML_PAGE, filename=filename, error=error)
 
 # ✅ QR Code generator
+
+# ✅ QR Code + HTML Page Generator for Desktop and Mobile
 def generate_qr_and_open():
     hostname = socket.gethostname()
     local_ip = socket.gethostbyname(hostname)
     url = f"http://{local_ip}:5000"
-    img = qrcode.make(url)
+
+    # Generate QR code
     qr_path = "flask_qr.png"
+    img = qrcode.make(url)
     img.save(qr_path)
     print(f"[✓] QR Code Generated: {qr_path} | URL: {url}")
-    time.sleep(1)
-    try:
-        os.startfile(qr_path)
-    except:
-        webbrowser.open(qr_path)
+
+    # Create a simple HTML page with QR + link
+    html_path = "qr.html"
+    with open(html_path, "w") as f:
+        f.write(f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Open Upload Page</title>
+            <style>
+                body {{
+                    font-family: Arial, sans-serif;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    height: 100vh;
+                    background: #f0f8ff;
+                }}
+                img {{
+                    width: 300px;
+                    height: 300px;
+                    margin-bottom: 20px;
+                }}
+                a {{
+                    font-size: 28px;
+                    color: black;
+                    text-decoration: none;
+                    font-weight: bold;
+                }}
+            </style>
+        </head>
+        <body>
+            <h2>Scan the QR Code or Click the Link Below</h2>
+            <img src="{qr_path}" alt="QR Code">
+            <a href="{url}" target="_blank">{url}</a>
+        </body>
+        </html>
+        """)
 
 # ✅ Start Flask app with QR
 if __name__ == '__main__':
